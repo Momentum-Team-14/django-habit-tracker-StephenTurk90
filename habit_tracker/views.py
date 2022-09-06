@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Habit
+from .forms import HabitForm
+from django.shortcuts import redirect
 
-# Create your views here.
+class HabitForm:
+    class Meta:
+        model = Habit
+        fields = ('title',)
