@@ -19,9 +19,7 @@ from django.urls import path, include
 from habit_tracker import views
 
 urlpatterns = [
-    path('', habit.home, name='home'),
+    path('', views.home, name='home'),
     path('accounts/', include('registration.backends.simple.urls')),
     path('admin/', admin.site.urls),
-    path('', include('habit_tracker.urls')),
-    path('habits/home', habit_tracker.home, name="home")
 ]

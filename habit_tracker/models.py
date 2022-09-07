@@ -6,8 +6,8 @@ class User(AbstractUser):
     pass
 
 class Habit(models.Model):
-    title = models.CharField(max_length=250)
+    action = models.CharField(max_length=250)
 
 
     def __str__(self):
-        return self.title
+        return self.habit
