@@ -16,7 +16,7 @@ class Habit(models.Model):
     unit_of_measure = models.CharField(max_length=250)
 
     def __str__(self):
-        return self.habit
+        return self.action
 
 
 class DailyRecord(models.Model):
