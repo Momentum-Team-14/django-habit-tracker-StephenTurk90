@@ -8,6 +8,8 @@ django = "*"
 django-registration-redux = "*"
 django-environ = "*"
 psycopg2-binary = "*"
+django-debug-toolbar = "*"
+django-extensions = "*"
 
 [dev-packages]
 
