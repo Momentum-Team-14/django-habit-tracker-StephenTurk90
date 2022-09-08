@@ -8,5 +8,4 @@ urlpatterns = [
     # You need this for django-registration-redux
     path("auth/", include("registration.backends.simple.urls")),
     path("admin/", admin.site.urls),
-    path("habits/", views.habit, name="habit"),
 ]
