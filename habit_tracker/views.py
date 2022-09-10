@@ -16,7 +16,7 @@ def habit_record(request, pk):
 
 
 def create_habit(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         form = HabitForm(request.POST)
         if form.is_valid():
             habit = form.save()
@@ -28,7 +28,7 @@ def create_habit(request):
 
 def edit_habit(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
-    if request.method == 'POST':
+    if request.method == 'GET':
         form = HabitForm(request.POST, instance=habit)
         if form.is_valid():
             habit = form.save(commit=False)
