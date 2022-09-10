@@ -8,7 +8,7 @@ from .models import Habit, DailyRecord
 class HabitForm(forms.ModelForm):
     class Meta:
         model = Habit
-        fields = ('action', 'target', 'unit_of_measure')
+        fields = ('user', 'action', 'target', 'unit_of_measure')
 
 class DailyRecordForm(forms.ModelForm):
     class Meta:
