@@ -10,11 +10,6 @@ def home(request):
     return render(request, "habit/home.html", {'habit': habit})
 
 
-# def habit(request):
-#     habit = Habit.objects.all()
-#     return render(request, 'habit/habits.html', {'habit': habit})
-
-
 def habit_record(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     return render(request, 'habit/habit_record.html', {'habit': habit})
@@ -25,26 +20,26 @@ def create_habit(request):
         form = HabitForm(request.POST)
         if form.is_valid():
             habit = form.save()
-            return redirect('habit', pk=habit.pk)
+            return redirect('habit_record', pk=habit.pk)
     else:
         form = HabitForm()
     return render(request, 'habit/create_habit.html', {'form': form})
 
 
 def edit_habit(request, pk):
-    habit = get_object_or_404(habit, pk=pk)
+    habit = get_object_or_404(Habit, pk=pk)
     if request.method == 'POST':
         form = HabitForm(request.POST, instance=habit)
         if form.is_valid():
             habit = form.save(commit=False)
             habit.save()
-            return redirect('habit', pk=habit.pk)
+            return redirect('habit_record', pk=habit.pk)
     else:
-        form = HabitForm(instance=Habit)
+        form = HabitForm(instance=habit)
     return render(request, 'habit/edit_habit.html', {'form': form})
 
 
 def delete_habit(request, pk):
-    habit = get_object_or_404(habit, pk=pk)
+    habit = get_object_or_404(Habit, pk=pk)
     habit.delete()
     return redirect('habit')

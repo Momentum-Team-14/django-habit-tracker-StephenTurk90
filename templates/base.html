@@ -10,13 +10,13 @@
     <title>{% block title %}{% endblock title %}</title>
 </head>
 <body>
-    <h1 class="home">Habit Tracker</h1>
+    <h1>
+        <a href= {% url 'home' %}>Habit Tracker</a>
+    </h1> 
+    <h2>
+        <a href= {% url 'create_habit' %}>Create a new habit</a>
+    </h2>
     {% block content %}
-    {% for habit in habit %}
-    <div class="habit"><a href="{% url 'habit' pk=habit.pk %}">{{ habit }}</a></div>
-    <div class="changes">Habit Options: <a href="{% url 'edit_card' pk=habit.pk %}">Edit</a>
-        <a href="{% url 'delete' pk=habit.pk %}">Delete</a></div>
-    {% endfor %}
-    {% endblock content %}
+    {% endblock %}
 </body>
 </html>

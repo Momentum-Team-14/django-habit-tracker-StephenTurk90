@@ -9,7 +9,7 @@ class User(AbstractUser):
 
 
 class Habit(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'habits')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name= 'habit')
     created_at = models.DateField(db_index=True, auto_now_add=True, null=True)
     action = models.CharField(max_length=250)
     target = models.IntegerField()
@@ -20,7 +20,7 @@ class Habit(models.Model):
 
 
 class DailyRecord(models.Model):
-    habit = models.ForeignKey(Habit, on_delete=models.CASCADE, related_name= 'habits')
+    habit = models.ForeignKey(Habit, on_delete=models.CASCADE, related_name= 'habit')
     date = models.DateField(null=True)
     target_completed = models.IntegerField(null=True)
 
