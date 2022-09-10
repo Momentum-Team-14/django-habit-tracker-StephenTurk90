@@ -10,11 +10,13 @@ def home(request):
     return render(request, "habit/home.html", {'habit': habit})
 
 
+@login_required
 def habit_record(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     return render(request, 'habit/habit_record.html', {'habit': habit})
 
 
+@login_required
 def create_habit(request):
     if request.method == 'POST':
         form = HabitForm(request.POST)
@@ -26,6 +28,7 @@ def create_habit(request):
     return render(request, 'habit/create_habit.html', {'form': form})
 
 
+@login_required
 def edit_habit(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     if request.method == 'POST':
@@ -39,6 +42,7 @@ def edit_habit(request, pk):
     return render(request, 'habit/edit_habit.html', {'form': form})
 
 
+@login_required
 def delete_habit(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     habit.delete()
