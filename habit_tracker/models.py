@@ -29,5 +29,8 @@ class DailyRecord(models.Model):
             UniqueConstraint(fields=['habit', 'date'], name='unique_constraint')
         ]
 
+    def percentage(self):
+        return (100 * (self.target_completed / self.habit.target))
+
     def __str__(self):
         return str(self.date)
