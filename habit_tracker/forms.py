@@ -1,6 +1,9 @@
 from django import forms
 from .models import Habit, DailyRecord
 
+# class UserForm(forms.modelForm):
+#     class Meta:
+#         fields = ???
 
 class HabitForm(forms.ModelForm):
     class Meta:

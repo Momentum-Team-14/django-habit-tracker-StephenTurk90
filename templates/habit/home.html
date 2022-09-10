@@ -1,8 +1,9 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends 'base.html' %}
 
 {% block content %}
-
-<h1 class="home">Habit Tracker</h1>
-
-{% endblock content %}
+    {% for habit in habit %}
+            <div class="habit"><a href="{% url 'habit' pk=habit.pk %}">{{ habit }}</a></div>
+            <div class="changes">Habit Options: <a href="{% url 'edit_card' pk=habit.pk %}">Edit</a>
+                <a href="{% url 'delete' pk=habit.pk %}">Delete</a></div>
+    {% endfor %}
+{% endblock %}

@@ -8,3 +8,42 @@ from django.shortcuts import redirect
 def home(request):
     return render(request, "habit/home.html")
 
+
+def habit(request):
+    habit = Habit.objects.all()
+    return render(request, 'habit/habits.html', {'habit': habit})
+
+
+def record(request, pk):
+    habit = get_object_or_404(habit, pk=pk)
+    return render(request, 'habit/.html', {'habit': habit})
+
+
+def create_habit(request):
+    if request.method == 'POST':
+        form = HabitForm(request.POST)
+        if form.is_valid():
+            habit = form.save()
+            return redirect('results', pk=habit.pk)
+    else:
+        form = HabitForm()
+    return render(request, 'habit/create_habit.html', {'form': form})
+
+
+def edit_habit(request, pk):
+    habit = get_object_or_404(habit, pk=pk)
+    if request.method == 'POST':
+        form = HabitForm(request.POST, instance=habit)
+        if form.is_valid():
+            habit = form.save(commit=False)
+            habit.save()
+            return redirect('results', pk=habit.pk)
+    else:
+        form = HabitForm(instance=Habit)
+    return render(request, 'habit/edit_habit.html', {'form': form})
+
+
+def delete_habit(request, pk):
+    habit = get_object_or_404(habit, pk=pk)
+    habit.delete()
+    return redirect('habit')
