@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models.constraints import UniqueConstraint
-
+from django.contrib.auth.decorators import login_required
 
 class User(AbstractUser):
     def __str__(self):

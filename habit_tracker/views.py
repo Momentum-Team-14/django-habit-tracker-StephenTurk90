@@ -6,17 +6,18 @@ from django.shortcuts import redirect
 
 
 def home(request):
-    return render(request, "habit/home.html")
-
-
-def habit(request):
     habit = Habit.objects.all()
-    return render(request, 'habit/habits.html', {'habit': habit})
+    return render(request, "habit/home.html", {'habit': habit})
 
 
-def record(request, pk):
-    habit = get_object_or_404(habit, pk=pk)
-    return render(request, 'habit/.html', {'habit': habit})
+# def habit(request):
+#     habit = Habit.objects.all()
+#     return render(request, 'habit/habits.html', {'habit': habit})
+
+
+def habit_record(request, pk):
+    habit = get_object_or_404(Habit, pk=pk)
+    return render(request, 'habit/habit_record.html', {'habit': habit})
 
 
 def create_habit(request):
@@ -24,7 +25,7 @@ def create_habit(request):
         form = HabitForm(request.POST)
         if form.is_valid():
             habit = form.save()
-            return redirect('results', pk=habit.pk)
+            return redirect('habit', pk=habit.pk)
     else:
         form = HabitForm()
     return render(request, 'habit/create_habit.html', {'form': form})
@@ -37,7 +38,7 @@ def edit_habit(request, pk):
         if form.is_valid():
             habit = form.save(commit=False)
             habit.save()
-            return redirect('results', pk=habit.pk)
+            return redirect('habit', pk=habit.pk)
     else:
         form = HabitForm(instance=Habit)
     return render(request, 'habit/edit_habit.html', {'form': form})
